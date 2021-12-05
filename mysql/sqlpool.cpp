@@ -6,7 +6,7 @@
 #include <list>
 #include <pthread.h>
 #include <iostream>
-#include "sqlpool.h"
+#include "./sqlpool.h"
 
 using namespace std;
 

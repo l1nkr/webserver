@@ -28,42 +28,33 @@ static int pipefd[2];
 static sort_timer_lst timer_lst;
 static int epollfd = 0;
 
-void create_daemon()
-{
+void create_daemon() {
 	pid_t pid;
 	pid = fork();
-	if(pid == -1)
-	{
+	if(pid == -1) {
 		printf("fork error\n");
 		exit(1);
-	}
-	else if(pid)
-	{
+	} else if(pid) {
 		exit(0);
 	}
  	//setsid使子进程独立。摆脱会话控制、摆脱原进程组控制、摆脱终端控制
-	if(-1 == setsid())
-	{
+	if(-1 == setsid()) {
 		printf("setsid error\n");
 		exit(1);
 	}
   	//通过再次创建子进程结束当前进程，使进程不再是会话首进程来禁止进程重新打开控制终端
 	pid = fork();
-	if(pid == -1)
-	{
+	if(pid == -1) {
 		printf("fork error\n");
 		exit(1);
-	}
-	else if(pid)
-	{
+	} else if(pid) {
 		exit(0);
 	}
   	//子进程中调用chdir()让根目录成为子进程工作目录
 	chdir("/");
 	int i;
 	//关闭文件描述符
-	for(i = 0; i < 3; ++i)
-	{
+	for(i = 0; i < 3; ++i) {
 		close(i);
 	}
 	//重设文件掩码为0（将权限全部开放）

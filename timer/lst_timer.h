@@ -26,15 +26,15 @@ public:
 
 class sort_timer_lst {
 public:
-    sort_timer_lst() : head(NULL), tail(NULL) {}
-    ~sort_timer_lst() 
-    void add_timer(util_timer *timer) 
-    void adjust_timer(util_timer *timer) {
-    void del_timer(util_timer *timer) 
-    void tick() 
+    sort_timer_lst() : head(), tail() {}
+    ~sort_timer_lst();
+    void add_timer(util_timer *timer);
+    void adjust_timer(util_timer *timer);
+    void del_timer(util_timer *timer);
+    void tick();
 
 private:
-    void add_timer(util_timer *timer, util_timer *lst_head) 
+    void add_timer(util_timer *timer, util_timer *lst_head);
 
 private:
     util_timer *head;

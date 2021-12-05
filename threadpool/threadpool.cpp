@@ -1,4 +1,4 @@
-#include "./threadpool.h"
+#include "threadpool.h"
 
 template <typename T>
 threadpool<T>::threadpool(connection_pool *connPool, int thread_number, int max_requests) {
